@@ -1,0 +1,12 @@
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\bin\Debug\CriyptoPocket.exe.config
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\bin\Debug\CriyptoPocket.exe
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\bin\Debug\CriyptoPocket.pdb
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\bin\Debug\CriyptoPocket.xml
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CryptoPocket.vbprojAssemblyReference.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CryptoPocket.Main.resources
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CryptoPocket.Resources.resources
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CryptoPocket.vbproj.GenerateResource.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CryptoPocket.vbproj.CoreCompileInputs.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CriyptoPocket.exe
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CriyptoPocket.xml
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\CryptoPocket1000\CryptoPocket\obj\x86\Debug\CriyptoPocket.pdb
