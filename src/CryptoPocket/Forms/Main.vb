@@ -848,7 +848,7 @@ Public Class Main
 #End Region
 
 #Region " Random pool"
-    Private Sub RandomPool1_CharacterSelection(s As Object, c As Char) Handles RandomPool1.CharacterSelection
+    Private Sub RandomPool2_CharacterSelection(s As Object, c As Char) Handles RandomPool2.CharacterSelection
         If txtRandomPassword.TextLength < CInt(nupRandom.Value) Then txtRandomPassword.AppendText(c)
     End Sub
     Private Sub btnCleanRandomPwd_Click(sender As Object, e As EventArgs) Handles btnCleanRandomPwd.Click

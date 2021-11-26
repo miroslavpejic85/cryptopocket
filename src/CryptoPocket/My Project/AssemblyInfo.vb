@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("CryptoPocket")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("PocketSolution")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("CryptoPocket")>
-<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

@@ -125,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAA
-        EAAAAk1TRnQBSQFMAgEBBQEAAUgBBQFIAQUBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        EAAAAk1TRnQBSQFMAgEBBQEAAWgBBQFoAQUBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABIAMAAQEBAAEgBgABIBIAA1sB0AMAAf/7AAH/AwAB/wMAAf8DAAH/8wAB/wMAAf8DAAH/AwAB//MA
         Af8DAAH/AwAB/wMAAf8DAAH/AwAB/+gAA1EBoAMAAf8DAAH/AwAB/wMAAf8DAAH/7AADUQGgAwAB/wMA
         Af8DAAH/AwAB/wMAAf8DAAH/AzkBYOQAA1EBoAMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wNYAcADAAH/
@@ -361,15 +361,6 @@
         Z2NhsAfK6wGxPBCDohbuCiYgBpkoCcSqQGxgoM7gUp/BUGhvArbRCoiNgFgDiGWAGKQZIwxAAGQQGxCD
         XAQKDyEgFoayQRawAzFIDRQwMAAALZ7ebhfsUVEAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="RichTextBox1.Text" xml:space="preserve">
-    <value>CryptoPocket is a Open Source project!
-Feel free to tweaks to your liking :)
-
-Developer: Miroslav Pejic
-Company: PocketSolution
-WebSite: https://pocketsolution.net
-GhitHub: https://github.com/miroslavpejic85</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>

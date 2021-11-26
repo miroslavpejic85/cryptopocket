@@ -21,8 +21,3 @@ Feel free to tweaks to your liking :slightly_smiling_face:
 <br>
 
 ![img3](./img/CryptoPocket3.PNG)
-
-<br>
-
-![img4](./img/CryptoPocket4.PNG)
-
