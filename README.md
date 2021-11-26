@@ -1,4 +1,4 @@
-# cryptopocket
+# CryptoPocket
 
 ![img0](./img/WindowsOs.png)
 
