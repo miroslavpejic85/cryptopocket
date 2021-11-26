@@ -1579,7 +1579,7 @@ Partial Class Main
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(382, 124)
         Me.RichTextBox1.TabIndex = 13
-        Me.RichTextBox1.Text = "CryptoPocket " & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "GhitHub: https://github.com/miroslavpejic85/cryptopocket"
+        Me.RichTextBox1.Text = "CryptoPocket " & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "GitHub: https://github.com/miroslavpejic85/cryptopocket"
         '
         'Main
         '
