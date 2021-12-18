@@ -2,8 +2,6 @@
 
 Save your access credentials, encrypt text messages or local files and then decrypt them at any time, providing the desired key, with this simple program all this is possible. No installation required, portable.
 
-Feel free to tweaks to your liking :slightly_smiling_face:
-
 <br>
 
 ![img0](./img/CryptoPocket0.PNG)
@@ -19,3 +17,7 @@ Feel free to tweaks to your liking :slightly_smiling_face:
 <br>
 
 ![img3](./img/CryptoPocket3.PNG)
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=AdGuard)](LICENSE)
