@@ -129,8 +129,8 @@ Partial Class Main
         Me.cbUppercase = New System.Windows.Forms.CheckBox()
         Me.nchar = New System.Windows.Forms.NumericUpDown()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cmsP.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.pbFileRow, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,9 +278,9 @@ Partial Class Main
         Me.lblFileInfo.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.lblFileInfo.Location = New System.Drawing.Point(142, 35)
         Me.lblFileInfo.Name = "lblFileInfo"
-        Me.lblFileInfo.Size = New System.Drawing.Size(414, 14)
+        Me.lblFileInfo.Size = New System.Drawing.Size(406, 14)
         Me.lblFileInfo.TabIndex = 27
-        Me.lblFileInfo.Text = "The key for decoded the file must be the same used for encoded"
+        Me.lblFileInfo.Text = "The key for decoded the file must be the same used for encode"
         '
         'btnDecodeFile
         '
@@ -332,9 +332,9 @@ Partial Class Main
         Me.lblFileSecret.BackColor = System.Drawing.SystemColors.ControlLight
         Me.lblFileSecret.Location = New System.Drawing.Point(61, 64)
         Me.lblFileSecret.Name = "lblFileSecret"
-        Me.lblFileSecret.Size = New System.Drawing.Size(34, 14)
+        Me.lblFileSecret.Size = New System.Drawing.Size(78, 14)
         Me.lblFileSecret.TabIndex = 16
-        Me.lblFileSecret.Text = "key:"
+        Me.lblFileSecret.Text = "Secret key:"
         '
         'btnEncodeFile
         '
@@ -507,9 +507,9 @@ Partial Class Main
         Me.lblTextInfo.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.lblTextInfo.Location = New System.Drawing.Point(215, 16)
         Me.lblTextInfo.Name = "lblTextInfo"
-        Me.lblTextInfo.Size = New System.Drawing.Size(417, 14)
+        Me.lblTextInfo.Size = New System.Drawing.Size(409, 14)
         Me.lblTextInfo.TabIndex = 25
-        Me.lblTextInfo.Text = "The key for decoded the .txt must be the same used for encoded"
+        Me.lblTextInfo.Text = "The key for decoded the .txt must be the same used for encode"
         '
         'btnTextLoad
         '
@@ -561,9 +561,9 @@ Partial Class Main
         Me.lblTextKey.BackColor = System.Drawing.SystemColors.ControlLight
         Me.lblTextKey.Location = New System.Drawing.Point(134, 51)
         Me.lblTextKey.Name = "lblTextKey"
-        Me.lblTextKey.Size = New System.Drawing.Size(34, 14)
+        Me.lblTextKey.Size = New System.Drawing.Size(78, 14)
         Me.lblTextKey.TabIndex = 23
-        Me.lblTextKey.Text = "key:"
+        Me.lblTextKey.Text = "Secret key:"
         '
         'btnCleanText
         '
@@ -956,7 +956,7 @@ Partial Class Main
         Me.lblSecret.Name = "lblSecret"
         Me.lblSecret.Size = New System.Drawing.Size(114, 22)
         Me.lblSecret.TabIndex = 40
-        Me.lblSecret.Text = "SECRET"
+        Me.lblSecret.Text = "SECRET KEY"
         Me.lblSecret.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblUsername
@@ -1304,7 +1304,7 @@ Partial Class Main
         '
         Me.cbPasswordType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbPasswordType.FormattingEnabled = True
-        Me.cbPasswordType.Items.AddRange(New Object() {"Parameters", "Random"})
+        Me.cbPasswordType.Items.AddRange(New Object() {"Params", "Random"})
         Me.cbPasswordType.Location = New System.Drawing.Point(132, 25)
         Me.cbPasswordType.Name = "cbPasswordType"
         Me.cbPasswordType.Size = New System.Drawing.Size(161, 22)
@@ -1553,6 +1553,15 @@ Partial Class Main
         Me.TabPage5.Text = "About"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox1.Location = New System.Drawing.Point(213, 97)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(382, 55)
+        Me.RichTextBox1.TabIndex = 13
+        Me.RichTextBox1.Text = "CryptoPocket " & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "GitHub: https://github.com/miroslavpejic85/cryptopocket"
+        '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.CryptoPocket.My.Resources.Resources.Admin
@@ -1562,15 +1571,6 @@ Partial Class Main
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 12
         Me.PictureBox1.TabStop = False
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RichTextBox1.Location = New System.Drawing.Point(213, 97)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(382, 55)
-        Me.RichTextBox1.TabIndex = 13
-        Me.RichTextBox1.Text = "CryptoPocket " & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "GitHub: https://github.com/miroslavpejic85/cryptopocket"
         '
         'Main
         '

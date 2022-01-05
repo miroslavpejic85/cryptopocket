@@ -3,8 +3,7 @@ Imports System.Text.RegularExpressions
 Public Class Main
 
 #Region " Declare"
-    'Private originalListItems As New List(Of ListViewItem) 'this gets populated on form load
-    Private myPsw As String = Environment.CurrentDirectory & "\" & "database.db"
+    Private myLocalDb As String = Environment.CurrentDirectory & "\" & "database.db"
     Private passwordok As Boolean = False
     Private modify As Boolean = False
     Private randomLenght As Integer = 50
@@ -13,47 +12,40 @@ Public Class Main
 
 #Region " Msgbox info alert error"
 
-    Dim passsecretalert As String = "You haven't entered the secret password for encryption!"
-    Dim descriptionalert As String = "You didn't entred the description!"
-    Dim emailalert As String = "Make sure that you correctly enter your e-mail!"
-    Dim useralert As String = "You haven't entered username!"
-    Dim passalert As String = "You did't enter your password!"
-    Dim decriptalert As String = "Please insert the Secret For decryption, must be equal To that used For encryption!"
-    Dim deletealert As String = "Are you sure to want delete selected items?"
+    Dim passsecretalert As String = "You didn't insert the secret key for encoding."
+    Dim descriptionalert As String = "You didn't insert the description."
+    Dim emailalert As String = "Make sure that you correctly insert your e-mail."
+    Dim useralert As String = "You didn't insert your username."
+    Dim passalert As String = "You didn't insert your password."
+    Dim decriptalert As String = "The secret key For decode must be equal To that used for encoding."
+    Dim deletealert As String = "Are you sure to want to delete the selected items?"
     Dim deltitle As String = "Delete"
-
-
     'txt encode
-    Dim txtkeyalert As String = "Please generate a random key, Or enter a staff key"
-    Dim txtempityalert As String = "Please insert the text To Encrypt!"
-    Dim txtempitydecodealert As String = "Please insert the Encrypted text To Decrypt!"
-    Dim txtsavedalert As String = "text successfully saved!"
-    Dim txtsaveerror As String = "Error to save Encrypted text..."
-    Dim txtloaderror As String = "Error to load Encrypted text..."
+    Dim txtkeyalert As String = "Please generate a random key, or insert your key."
+    Dim txtempityalert As String = "Please insert the text to encode."
+    Dim txtempitydecodealert As String = "Please insert the encoded text."
+    Dim txtsavedalert As String = "The text was successfully saved."
+    Dim txtsaveerror As String = "Error to save the encoded text."
+    Dim txtloaderror As String = "Error to load the encoded text."
     Dim nottext As String = "Not a text file (.txt)"
 
-    Dim filecripted As String = "File Crypted successfully!"
-    Dim filedecrypted As String = "File Decrypted successfully!"
+    Dim filecripted As String = "The file was encoded successfully."
+    Dim filedecrypted As String = "The file was decoded successfully."
 
 #End Region
 
 #Region " Load close me"
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
         Try
-            ' load psw from the file
-            If IO.File.Exists(myPsw) Then                                                                               'cerca se il file esiste
-                Dim myPswFileLines() As String = IO.File.ReadAllLines(myPsw)                                            'load il file in una string array.
-                For Each line As String In myPswFileLines                                                               'ciclo lista array.
-                    Dim lineArray() As String = line.Split(CChar("#"))                                                  'separa con "#" i caratteri.
-                    Dim newItem As New ListViewItem(lineArray(0), 0)                                                    'aggiunge item + img index
-                    newItem.SubItems.AddRange(New String() {lineArray(1), lineArray(2), lineArray(3), lineArray(4)})    'aggiunge subitem.
-                    LVPsw.Items.Add(newItem)                                                                            'aggiunge Item alla LVPsw.
-                    'Dim newItem As New ListViewItem(lineArray(0), 0)
-                    'newItem.SubItems.AddRange(New String() {lineArray(1), lineArray(2), lineArray(3), lineArray(4)})
-                    'originalListItems.Add(newItem)
+            ' load from the file
+            If IO.File.Exists(myLocalDb) Then
+                Dim myPswFileLines() As String = IO.File.ReadAllLines(myLocalDb)
+                For Each line As String In myPswFileLines
+                    Dim lineArray() As String = line.Split(CChar("#"))
+                    Dim newItem As New ListViewItem(lineArray(0), 0)
+                    newItem.SubItems.AddRange(New String() {lineArray(1), lineArray(2), lineArray(3), lineArray(4)})
+                    LVPsw.Items.Add(newItem)
                 Next
-                'LVPsw.Items.AddRange(originalListItems.ToArray)
             End If
         Catch ex As Exception
             Me.TopMost = False
@@ -78,13 +70,14 @@ Public Class Main
     Public Sub SaveAllData()
         Try
             ' on form close save all data
-            Dim myWriter As New IO.StreamWriter(myPsw)
+            Dim myWriter As New IO.StreamWriter(myLocalDb)
             For Each myItem As ListViewItem In LVPsw.Items
                 myWriter.WriteLine(myItem.Text & "#" &
                                    myItem.SubItems(1).Text & "#" &
                                    myItem.SubItems(2).Text & "#" &
                                    myItem.SubItems(3).Text & "#" &
-                                   myItem.SubItems(4).Text & "#") 'write Item and SubItem.
+                                   myItem.SubItems(4).Text & "#")
+                'write Item and SubItem.
             Next
             myWriter.Close()
         Catch ex As Exception
@@ -297,6 +290,7 @@ Public Class Main
             LVPsw.Focus()
 
             If found Then
+                Return
             Else
                 Me.TopMost = False
                 MsgBox("Not found!", MsgBoxStyle.Critical)
@@ -319,7 +313,7 @@ Public Class Main
                 btnAddEncode.Enabled = False
                 btnSearch.Enabled = False
 
-                'decripta il selezionato dalla lista
+                ' decode the seleceted from the list
                 Try
                     If LVPsw.SelectedItems.Count > 0 Then
                         If txtSecret.Text = "" Then
@@ -450,7 +444,6 @@ Public Class Main
     Private Sub btnDelItem_Click(sender As Object, e As EventArgs) Handles btnDelItem.Click
         Try
             If LVPsw.SelectedItems.Count > 0 Then
-                'rimuove password dalla lista
                 Dim result = MessageBox.Show(deletealert, deltitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     For Each item As ListViewItem In LVPsw.SelectedItems
@@ -489,7 +482,7 @@ Public Class Main
             txtPassword.Text = pass
 
             If txtSecret.Text IsNot "" Then
-                ' try to decript
+                ' try to decode
                 Try
                     If LVPsw.SelectedItems.Count > 0 Then
                         If txtSecret.Text = "" Then
@@ -836,8 +829,7 @@ Public Class Main
 #End Region
 
 
-#Region " Random password generator with paramiter"
-
+#Region " Random password generator with params"
     Private Sub btnParamsPwdGenerate_Click(sender As Object, e As EventArgs) Handles btnParamsPwdGenerate.Click
         txtParamsPassword.Text = RandomKeyGenerator.RandomStringParams(CInt(nchar.Value))
     End Sub
@@ -889,7 +881,7 @@ Public Class Main
             Dim save As New SaveFileDialog
             With save
                 .DefaultExt = "txt"
-                .FileName = "ListPassword" & String.Format("{0:_dd-M-yyyy_hh-mm-ss}", DateTime.Now)
+                .FileName = "PasswordLists" & String.Format("{0:_dd-M-yyyy_hh-mm-ss}", DateTime.Now)
                 .Filter = "txt files (*.txt)|*.txt"
                 .FilterIndex = 1
                 .OverwritePrompt = True
@@ -929,29 +921,6 @@ Public Class Main
 #Region " About"
     Private Sub RichTextBox1_LinkClicked(sender As Object, e As LinkClickedEventArgs) Handles RichTextBox1.LinkClicked
         Process.Start(e.LinkText)
-    End Sub
-#End Region
-
-
-#Region " Todo"
-    Private Sub txtSearchList_TextChanged(sender As Object, e As EventArgs) Handles txtSearchList.TextChanged
-
-        'https://social.msdn.microsoft.com/Forums/en-US/ba16394f-dbaa-449b-aff8-f1dd57bf7fea/listview-search-text-change-event?forum=vbgeneral
-
-        'If txtSearchList.Text.Trim <> "" Then
-        'Dim MatchedItems As New List(Of ListViewItem)
-        'For Each itm As ListViewItem In originalListItems
-        'If itm.SubItems(0).Text.ToLower.StartsWith(txtSearchList.Text.Trim.ToLower) Then MatchedItems.Add(itm)
-        'Next
-        'If MatchedItems.Count > 0 Then
-        'LVPsw.Items.Clear()
-        'LVPsw.Items.AddRange(MatchedItems.ToArray)
-        'End If
-        'Else
-        'LVPsw.Items.Clear()
-        'LVPsw.Items.AddRange(originalListItems.ToArray)
-        'End If
-
     End Sub
 #End Region
 
