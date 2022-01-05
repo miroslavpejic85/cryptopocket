@@ -4,17 +4,19 @@ Save your access credentials, encrypt text messages or local files and then decr
 
 <br>
 
+## Save access credentials
+
 ![img0](./img/CryptoPocket0.PNG)
 
-<br>
+## Encode-decode texts
 
 ![img1](./img/CryptoPocket1.PNG)
 
-<br>
+## Encode-decode files
 
 ![img2](./img/CryptoPocket2.PNG)
 
-<br>
+## Generate random passwords
 
 ![img3](./img/CryptoPocket3.PNG)
 
