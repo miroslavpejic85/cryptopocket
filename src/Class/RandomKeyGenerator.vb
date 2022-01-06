@@ -1,75 +1,80 @@
-﻿Public Class RandomKeyGenerator
+﻿Imports System.Security.Cryptography
+Imports System.Text
+
+Public Class RandomKeyGenerator
 
 #Region " Random string number"
     Public Shared Function RandomStringNumber(ByVal length As Integer) As String
-        Dim sb As New System.Text.StringBuilder
-        Dim chars() As String = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-               "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "X",
-               "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
-        Dim upperBound As Integer = UBound(chars)
+        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        Dim res As New StringBuilder()
 
-        For x As Integer = 1 To length
-            sb.Append(chars(CInt(Int(Rnd() * upperBound))))
-        Next
+        Using rng As New RNGCryptoServiceProvider()
+            Dim uintBuffer As Byte() = New Byte(3) {}
 
-        Return sb.ToString
+            While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
+                rng.GetBytes(uintBuffer)
+                Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)
+                res.Append(valid(CInt((num Mod CUInt(valid.Length)))))
+            End While
+        End Using
+
+        Return res.ToString()
     End Function
 #End Region
 
 #Region " Random string number special char"
     Public Shared Function RandomStringNumberSpecialChar(ByVal length As Integer) As String
-        Dim sb As New System.Text.StringBuilder
-        Dim chars() As String = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-               "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "X",
-               "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-               "!", "§", "$", "%", "&", "/", "@", "(", ")", "=", "?", "*", "+", "~", "#", "'", "-", "_", "<", ">", "|", "^", "°"}
-        Dim upperBound As Integer = UBound(chars)
+        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!§$%&/@()=?*+~#'-_<>|^°"
+        Dim res As New StringBuilder()
 
-        For x As Integer = 1 To length
-            sb.Append(chars(CInt(Int(Rnd() * upperBound))))
-        Next
+        Using rng As New RNGCryptoServiceProvider()
+            Dim uintBuffer As Byte() = New Byte(3) {}
 
-        Return sb.ToString
+            While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
+                rng.GetBytes(uintBuffer)
+                Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)
+                res.Append(valid(CInt((num Mod CUInt(valid.Length)))))
+            End While
+        End Using
+
+        Return res.ToString()
     End Function
 #End Region
 
 #Region " Random"
+
     Public Shared Function RandomStringParams(ByVal length As Integer) As String
-        Try
+        Dim valid As String = Nothing
 
-            Dim sb As New System.Text.StringBuilder
-            Dim chars() As Char = Nothing
-            Dim charString As String = Nothing
+        If Main.cbLowercase.Checked Then
+            valid &= "abcdefghijklmnopqrstuvwxyz"
+        End If
+        If Main.cbUppercase.Checked Then
+            valid &= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        End If
+        If Main.cbNumbers.Checked Then
+            valid &= "1234567890"
+        End If
+        If Main.cbSpecialChars.Checked Then
+            valid &= "!§$%&/@()=?*+~#'-_<>|^°"
+        End If
 
-            If Main.cbLowercase.Checked Then
-                charString &= "a" & "b" & "c" & "d" & "e" & "f" & "g" & "h" & "i" & "j" & "k" & "l" & "m" & "n" & "o" & "p" & "q" & "r" & "s" & "t" & "u" & "v" & "w" & "x" & "y" & "z"
-            End If
-            If Main.cbUppercase.Checked Then
-                charString &= "A" & "B" & "C" & "D" & "E" & "F" & "G" & "H" & "I" & "J" & "K" & "L" & "M" & "N" & "O" & "P" & "Q" & "R" & "S" & "T" & "U" & "V" & "W" & "X" & "Y" & "X" & "Y" & "Z"
-            End If
-            If Main.cbNumbers.Checked Then
-                charString &= "1" & "2" & "3" & "4" & "5" & "6" & "7" & "8" & "9" & "0"
-            End If
-            If Main.cbSpecialChars.Checked Then
-                charString &= "|" & "!" & "£" & "$" & "%" & "&" & "/" & "(" & ")" & "=" & "?" & "*" & "[" & "]" & "{" & "}" & ";" & ":" & "-" & "@" & "<" & ">" & "^" & "°" & "à" & "ò" & "é" & "§" & "ù" & "è" & "+"
-            End If
+        If valid Is Nothing Then Return ""
 
-            If charString Is Nothing Then Return ""
+        Dim res As New StringBuilder()
+        Using rng As New RNGCryptoServiceProvider()
+            Dim uintBuffer As Byte() = New Byte(3) {}
 
-            chars = charString.ToCharArray
+            While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
+                rng.GetBytes(uintBuffer)
+                Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)
+                res.Append(valid(CInt((num Mod CUInt(valid.Length)))))
+            End While
+        End Using
 
-            Dim upperBound As Integer = UBound(chars)
-
-            For x As Integer = 1 To length
-                sb.Append(chars(CInt(Int(Rnd() * upperBound))))
-            Next
-            Return sb.ToString
-
-        Catch ex As Exception
-            Return Nothing
-        End Try
-
+        Return res.ToString()
     End Function
+
 #End Region
 
 End Class
