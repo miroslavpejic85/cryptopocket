@@ -42,7 +42,6 @@ Public Class RandomKeyGenerator
 #End Region
 
 #Region " Random"
-
     Public Shared Function RandomStringParams(ByVal length As Integer) As String
         Dim valid As String = Nothing
 
@@ -56,7 +55,7 @@ Public Class RandomKeyGenerator
             valid &= "1234567890"
         End If
         If Main.cbSpecialChars.Checked Then
-            valid &= "!§$%&/@()=?*+~#'-_<>|^°"
+            valid &= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
         End If
 
         If valid Is Nothing Then Return ""
@@ -74,7 +73,6 @@ Public Class RandomKeyGenerator
 
         Return res.ToString()
     End Function
-
 #End Region
 
 End Class
