@@ -24,7 +24,7 @@ Public Class RandomKeyGenerator
 
 #Region " Random string number special char"
     Public Shared Function RandomStringNumberSpecialChar(ByVal length As Integer) As String
-        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!§$%&/@()=?*+~#'-_<>|^°"
+        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
         Dim res As New StringBuilder()
 
         Using rng As New RNGCryptoServiceProvider()
