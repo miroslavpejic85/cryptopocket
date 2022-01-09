@@ -803,7 +803,7 @@ Public Class Main
 
 #Region " Random pool"
     Private Sub RandomPool3_CharacterSelection(s As Object, c As Char) Handles RandomPool.CharacterSelection
-        If txtRandomPassword.TextLength < CInt(nupRandom.Value) Then txtRandomPassword.AppendText(c)
+        txtRandomPassword.AppendText(c)
     End Sub
     Private Sub btnCleanRandomPwd_Click(sender As Object, e As EventArgs) Handles btnCleanRandomPwd.Click
         txtRandomPassword.Text = ""
