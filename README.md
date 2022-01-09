@@ -6,19 +6,19 @@ Save your access credentials, encrypt text messages or local files and then decr
 
 ## Save access credentials
 
-![img0](./img/CryptoPocket0.png)
+![img0](./img/CryptoPocket0.PNG)
 
 ## Encode-decode texts
 
-![img1](./img/CryptoPocket1.png)
+![img1](./img/CryptoPocket1.PNG)
 
 ## Encode-decode files
 
-![img2](./img/CryptoPocket2.png)
+![img2](./img/CryptoPocket2.PNG)
 
 ## Generate random passwords
 
-![img3](./img/CryptoPocket3.png)
+![img3](./img/CryptoPocket3.PNG)
 
 ## Contributing
 
