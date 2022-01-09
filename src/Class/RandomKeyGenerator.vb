@@ -3,41 +3,24 @@ Imports System.Text
 
 Public Class RandomKeyGenerator
 
+#Region " Declare"
+    Private Const lowerLetters As String = "abcdefghijklmnopqrstuvwxyz"
+    Private Const upperLetters As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    Private Const numbers As String = "1234567890"
+    Private Const specialChars As String = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+#End Region
+
 #Region " Random string number"
     Public Shared Function RandomStringNumber(ByVal length As Integer) As String
-        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-        Dim res As New StringBuilder()
-
-        Using rng As New RNGCryptoServiceProvider()
-            Dim uintBuffer As Byte() = New Byte(3) {}
-
-            While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
-                rng.GetBytes(uintBuffer)
-                Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)
-                res.Append(valid(CInt((num Mod CUInt(valid.Length)))))
-            End While
-        End Using
-
-        Return res.ToString()
+        Const valid As String = lowerLetters & upperLetters
+        Return RngGenerate(valid, length)
     End Function
 #End Region
 
 #Region " Random string number special char"
     Public Shared Function RandomStringNumberSpecialChar(ByVal length As Integer) As String
-        Const valid As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-        Dim res As New StringBuilder()
-
-        Using rng As New RNGCryptoServiceProvider()
-            Dim uintBuffer As Byte() = New Byte(3) {}
-
-            While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
-                rng.GetBytes(uintBuffer)
-                Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)
-                res.Append(valid(CInt((num Mod CUInt(valid.Length)))))
-            End While
-        End Using
-
-        Return res.ToString()
+        Const valid As String = lowerLetters & upperLetters & numbers & specialChars
+        Return RngGenerate(valid, length)
     End Function
 #End Region
 
@@ -46,24 +29,31 @@ Public Class RandomKeyGenerator
         Dim valid As String = Nothing
 
         If Main.cbLowercase.Checked Then
-            valid &= "abcdefghijklmnopqrstuvwxyz"
+            valid &= lowerLetters
         End If
         If Main.cbUppercase.Checked Then
-            valid &= "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            valid &= upperLetters
         End If
         If Main.cbNumbers.Checked Then
-            valid &= "1234567890"
+            valid &= numbers
         End If
         If Main.cbSpecialChars.Checked Then
-            valid &= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+            valid &= specialChars
         End If
 
         If valid Is Nothing Then Return ""
 
+        Return RngGenerate(valid, length)
+
+    End Function
+#End Region
+
+#Region " RNG Generate"
+    Public Shared Function RngGenerate(ByVal valid As String, ByVal length As Integer) As String
         Dim res As New StringBuilder()
+
         Using rng As New RNGCryptoServiceProvider()
             Dim uintBuffer As Byte() = New Byte(3) {}
-
             While Math.Max(Threading.Interlocked.Decrement(length), length + 1) > 0
                 rng.GetBytes(uintBuffer)
                 Dim num As UInteger = BitConverter.ToUInt32(uintBuffer, 0)

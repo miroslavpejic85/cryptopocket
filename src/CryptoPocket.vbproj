@@ -71,7 +71,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\admin.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -153,9 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -172,49 +173,37 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\man-key.ico" />
+    <None Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_icon&amp;16.png" />
+    <None Include="Resources\question.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\0266-question.png" />
+    <None Include="Resources\exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\0270-cancel-circle.png" />
+    <None Include="Resources\info.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info_icon&amp;16.png" />
+    <None Include="Resources\zoom.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\log.png" />
+    <None Include="Resources\encode.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\zoom_icon&amp;16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\padlock_closed_icon&amp;16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\padlock_open_icon&amp;16.png" />
+    <None Include="Resources\decode.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pencil.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\trash_icon&amp;16.png" />
+    <None Include="Resources\trash.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\admin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\0303-loop2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\charter-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\admin.ico" />
+    <None Include="Resources\refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\txt.png" />
@@ -226,13 +215,10 @@
     <None Include="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\edit_clear.png" />
+    <None Include="Resources\clear.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\disk-save-yellow-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search-16.png" />
+    <None Include="Resources\save-gold.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png" />
@@ -247,10 +233,10 @@
     <None Include="Resources\clipb.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\clipboard_copy_icon&amp;16.png" />
+    <None Include="Resources\clipboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_bottom_rigth_icon&amp;16.png" />
+    <None Include="Resources\arrow-bottom.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -259,7 +245,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

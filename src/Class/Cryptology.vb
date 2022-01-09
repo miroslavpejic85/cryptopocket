@@ -12,91 +12,6 @@ Public Class Cryptology
     Public Shared Decoded As Boolean = False
 #End Region
 
-
-#Region " Enc|StrToByte"
-    Friend Shared Function EncryptStringToBytes(plainText As String, key As Byte(), iv As Byte()) As Byte()
-        ' Check arguments.
-        If plainText Is Nothing OrElse plainText.Length <= 0 Then
-            Throw New ArgumentNullException("plainText")
-        End If
-        If key Is Nothing OrElse key.Length <= 0 Then
-            Throw New ArgumentNullException("key")
-        End If
-        If iv Is Nothing OrElse iv.Length <= 0 Then
-            Throw New ArgumentNullException("key")
-        End If
-
-        Dim encrypted As Byte()
-        ' Create an RijndaelManaged object
-        ' with the specified key and IV.
-        Using rijAlg = New RijndaelManaged()
-            rijAlg.Key = key
-            rijAlg.IV = iv
-
-            ' Create a decrytor to perform the stream transform.
-            Dim encryptor As ICryptoTransform = rijAlg.CreateEncryptor(rijAlg.Key, rijAlg.IV)
-
-            ' Create the streams used for encryption.
-            Using msEncrypt = New MemoryStream()
-                Using csEncrypt = New CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)
-                    Using swEncrypt = New StreamWriter(csEncrypt)
-                        'Write all data to the stream.
-                        swEncrypt.Write(plainText)
-                    End Using
-                    encrypted = msEncrypt.ToArray()
-                End Using
-            End Using
-        End Using
-
-
-        ' Return the encrypted bytes from the memory stream.
-        Return encrypted
-
-    End Function
-#End Region
-
-#Region " Dec|StrFromByte"
-    Friend Shared Function DecryptStringFromBytes(cipherText As Byte(), key As Byte(), iv As Byte()) As String
-        ' Check arguments.
-        If cipherText Is Nothing OrElse cipherText.Length <= 0 Then
-            Throw New ArgumentNullException("cipherText")
-        End If
-        If key Is Nothing OrElse key.Length <= 0 Then
-            Throw New ArgumentNullException("key")
-        End If
-        If iv Is Nothing OrElse iv.Length <= 0 Then
-            Throw New ArgumentNullException("key")
-        End If
-
-        ' Declare the string used to hold
-        ' the decrypted text.
-        Dim plaintext As String
-
-        ' Create an RijndaelManaged object
-        ' with the specified key and IV.
-        Using rijAlg = New RijndaelManaged()
-            rijAlg.Key = key
-            rijAlg.IV = iv
-
-            ' Create a decrytor to perform the stream transform.
-            Dim decryptor As ICryptoTransform = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV)
-
-            ' Create the streams used for decryption.
-            Using msDecrypt = New MemoryStream(cipherText)
-                Using csDecrypt = New CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)
-                    Using srDecrypt = New StreamReader(csDecrypt)
-                        ' Read the decrypted bytes from the decrypting stream
-                        ' and place them in a string.
-                        plaintext = srDecrypt.ReadToEnd()
-                    End Using
-                End Using
-
-            End Using
-        End Using
-        Return plaintext
-    End Function
-#End Region
-
 #Region " Enc|File"
     Friend Shared Sub EncryptFile(inputPath As String, outputPath As String, password As String)
         Dim input = New FileStream(inputPath, FileMode.Open, FileAccess.Read)
@@ -179,7 +94,7 @@ Public Class Cryptology
     End Function
 #End Region
 
-#Region " Enc|Dec|rijendael"
+#Region " Enc|Text"
     Friend Shared Function RijndaelDecrypt(ByVal UDecryptU As String, ByVal UKeyU As String) As String
         Dim XoAesProviderX As New RijndaelManaged
         Dim XbtCipherX() As Byte
@@ -194,12 +109,14 @@ Public Class Cryptology
             XbtCipherX = Convert.FromBase64String(UDecryptU)
             XcsX.Write(XbtCipherX, 0, XbtCipherX.Length)
             XcsX.Close()
-            UDecryptU = System.Text.Encoding.UTF8.GetString(XmsX.ToArray)
+            UDecryptU = Encoding.UTF8.GetString(XmsX.ToArray)
         Catch
         End Try
         Return UDecryptU
     End Function
+#End Region
 
+#Region " Dec|Text"
     Friend Shared Function Rijndaelcrypt(ByVal File As String, ByVal Key As String) As String
         Dim oAesProvider As New RijndaelManaged
         Dim btClear() As Byte
@@ -211,7 +128,7 @@ Public Class Cryptology
         Dim cs As New CryptoStream(ms,
           oAesProvider.CreateEncryptor(),
           CryptoStreamMode.Write)
-        btClear = System.Text.Encoding.UTF8.GetBytes(File)
+        btClear = Encoding.UTF8.GetBytes(File)
         cs.Write(btClear, 0, btClear.Length)
         cs.Close()
         File = Convert.ToBase64String(ms.ToArray)

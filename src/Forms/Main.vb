@@ -3,34 +3,34 @@ Imports System.Text.RegularExpressions
 Public Class Main
 
 #Region " Declare"
-    Private myLocalDb As String = Environment.CurrentDirectory & "\" & "database.db"
+    Private ReadOnly myLocalDb As String = Environment.CurrentDirectory & "\" & "database.db"
     Private passwordok As Boolean = False
     Private modify As Boolean = False
-    Private randomLenght As Integer = 50
+    Private ReadOnly randomLenght As Integer = 50
 #End Region
 
 
 #Region " Msgbox info alert error"
-
-    Dim passsecretalert As String = "You didn't insert the secret key for encoding."
-    Dim descriptionalert As String = "You didn't insert the description."
-    Dim emailalert As String = "Make sure that you correctly insert your e-mail."
-    Dim useralert As String = "You didn't insert your username."
-    Dim passalert As String = "You didn't insert your password."
-    Dim decriptalert As String = "The secret key For decode must be equal To that used for encoding."
-    Dim deletealert As String = "Are you sure to want to delete the selected items?"
-    Dim deltitle As String = "Delete"
-    'txt encode
-    Dim txtkeyalert As String = "Please generate a random key, or insert your key."
-    Dim txtempityalert As String = "Please insert the text to encode."
-    Dim txtempitydecodealert As String = "Please insert the encoded text."
-    Dim txtsavedalert As String = "The text was successfully saved."
-    Dim txtsaveerror As String = "Error to save the encoded text."
-    Dim txtloaderror As String = "Error to load the encoded text."
-    Dim nottext As String = "Not a text file (.txt)"
-
-    Dim filecripted As String = "The file was encoded successfully."
-    Dim filedecrypted As String = "The file was decoded successfully."
+    ' cred
+    ReadOnly passsecretalert As String = "You didn't insert the secret key for encoding."
+    ReadOnly descriptionalert As String = "You didn't insert the description."
+    ReadOnly emailalert As String = "Make sure that you correctly insert your e-mail."
+    ReadOnly useralert As String = "You didn't insert your username."
+    ReadOnly passalert As String = "You didn't insert your password."
+    ReadOnly decriptalert As String = "The secret key For decode must be equal To that used for encoding."
+    ReadOnly deletealert As String = "Are you sure to want to delete the selected items?"
+    ReadOnly deltitle As String = "Delete"
+    ' txt
+    ReadOnly txtkeyalert As String = "Please generate a random key, or insert your key."
+    ReadOnly txtempityalert As String = "Please insert the text to encode."
+    ReadOnly txtempitydecodealert As String = "Please insert the encoded text."
+    ReadOnly txtsavedalert As String = "The text was successfully saved."
+    ReadOnly txtsaveerror As String = "Error to save the encoded text."
+    ReadOnly txtloaderror As String = "Error to load the encoded text."
+    ReadOnly nottext As String = "Not a text file (.txt)"
+    ' file
+    ReadOnly filecripted As String = "The file was encoded successfully."
+    ReadOnly filedecrypted As String = "The file was decoded successfully."
 
 #End Region
 
@@ -38,7 +38,7 @@ Public Class Main
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             ' load from the file
-            If IO.File.Exists(myLocalDb) Then
+            If File.Exists(myLocalDb) Then
                 Dim myPswFileLines() As String = IO.File.ReadAllLines(myLocalDb)
                 For Each line As String In myPswFileLines
                     Dim lineArray() As String = line.Split(CChar("#"))
@@ -58,7 +58,7 @@ Public Class Main
         End If
         cbPasswordType.SelectedIndex = 0
         pbFile.AllowDrop = True
-        Me.MinimumSize = New System.Drawing.Size(Me.Width, Me.Height) 'add min form size
+        Me.MinimumSize = New Size(Me.Width, Me.Height) 'add min form size
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -108,7 +108,6 @@ Public Class Main
     End Sub
 #End Region
 
-
 #Region " Clipboard get set"
 
     'set
@@ -137,12 +136,12 @@ Public Class Main
     End Sub
 
     Private Sub CopiaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles tsmCopy.Click
-        Clipboard.SetText(txtUrl.Text)
+        If Not txtUrl.Text = "" Then Clipboard.SetText(txtUrl.Text)
     End Sub
 
     'get
     Private Sub tsmPast_Click(sender As Object, e As EventArgs) Handles tsmPast.Click
-        txtUrl.Text = Clipboard.GetText
+        If Not txtUrl.Text = "" Then txtUrl.Text = Clipboard.GetText
     End Sub
 
 #End Region
@@ -187,7 +186,7 @@ Public Class Main
 
 #End Region
 
-#Region " Btn encode Add"
+#Region " Btn encode add"
 
     Private Sub btnAddEncode_Click(sender As System.Object, e As System.EventArgs) Handles btnAddEncode.Click
         Try
@@ -522,12 +521,10 @@ Public Class Main
         Catch ex As Exception
         End Try
     End Sub
-
 #End Region
 
 
 #Region " .txt encode decode"
-
     Private Sub btnTextLoad_Click(sender As Object, e As EventArgs) Handles btnTextLoad.Click
         Try
             Dim o As New OpenFileDialog With {.Filter = "Text Files (*.txt)|*.txt"}
@@ -615,7 +612,7 @@ Public Class Main
             Dim save As New SaveFileDialog
             With save
                 .DefaultExt = "txt"
-                .FileName = "Txt_Encryted" & String.Format("{0:_dd-M-yyyy_hh-mm-ss}", DateTime.Now)
+                .FileName = "Encoded" & String.Format("{0:_dd-M-yyyy_hh-mm-ss}", DateTime.Now)
                 .Filter = "txt files (*.txt)|*.txt"
                 .FilterIndex = 1
                 .OverwritePrompt = True
@@ -625,7 +622,6 @@ Public Class Main
             If save.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Filename = save.FileName
                 Try
-                    ' My.Computer.FileSystem.WriteAllText(Filename, txtchatrom.Text, False)
                     Dim sw As StreamWriter = File.CreateText(Filename)
                     For i As Integer = 0 To txtEncodeDecodeText.Lines.Length - 1
                         sw.WriteLine(txtEncodeDecodeText.Lines(i))
@@ -648,9 +644,6 @@ Public Class Main
     Private Sub btnCleanText_Click(sender As Object, e As EventArgs) Handles btnCleanText.Click
         txtEncodeDecodeText.Text = ""
     End Sub
-
-
-
 #End Region
 
 #Region " .txt drag and drop"
@@ -661,7 +654,7 @@ Public Class Main
     End Sub
 
     Private Sub txtEncodeDecodeText_DragDrop(sender As Object, e As DragEventArgs) Handles txtEncodeDecodeText.DragDrop
-        Dim file As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop, True), System.String())
+        Dim file As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop, True), String())
         Try
             Dim extension As String
             extension = Path.GetExtension(file(0))
@@ -685,7 +678,6 @@ Public Class Main
         Catch ex As Exception
         End Try
     End Sub
-
 #End Region
 
 
@@ -714,26 +706,15 @@ Public Class Main
             Me.TopMost = True
             Exit Sub
         Else
-
-            Dim file As String = Nothing
-            Dim fpath As String = Nothing
-            Dim ext As String = Nothing
-            Dim filen As String = Nothing
-            Dim filesiz As Long = Nothing
-
             Dim open As New OpenFileDialog
-
-            If open.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
-                file = open.FileName 'full path
-                fpath = System.IO.Path.GetDirectoryName(file) 'file dir
-                ext = System.IO.Path.GetExtension(file) 'file extension .exe
-                filen = System.IO.Path.GetFileNameWithoutExtension(file) 'file name
-                Dim infoReader As System.IO.FileInfo
-                infoReader = My.Computer.FileSystem.GetFileInfo(file)
-                'MsgBox("File is " & infoReader.Length & " bytes.")
-                filesiz = infoReader.Length
-
-                Cryptology.EncryptFile(file, fpath & "\" & filen & "&_Encrypted" & ext, txtFileSecret.Text)
+            If open.ShowDialog <> DialogResult.Cancel Then
+                Dim file As String = open.FileName
+                Dim fpath As String = Path.GetDirectoryName(file)
+                Dim ext As String = Path.GetExtension(file)
+                Dim filen As String = Path.GetFileNameWithoutExtension(file)
+                Dim infoReader As FileInfo = My.Computer.FileSystem.GetFileInfo(file)
+                Dim filesiz As Long = infoReader.Length
+                Cryptology.EncryptFile(file, fpath & "\" & filen & "#Encoded" & ext, txtFileSecret.Text)
                 If Cryptology.Encoded Then
                     Me.TopMost = False
                     MsgBox(filecripted, MsgBoxStyle.Information)
@@ -752,20 +733,14 @@ Public Class Main
             Me.TopMost = True
             Exit Sub
         Else
-            Dim file As String = Nothing
-            Dim fpath As String = Nothing
-            Dim ext As String = Nothing
-            Dim filen As String = Nothing
-
-
             Dim open As New OpenFileDialog
-            If open.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
-                file = open.FileName 'full path
-                fpath = System.IO.Path.GetDirectoryName(file) 'filr dir
-                ext = System.IO.Path.GetExtension(file) 'file extension .exe
-                filen = System.IO.Path.GetFileNameWithoutExtension(file) 'file name
-                Dim splitfn As String() = filen.Split(CChar("&_"))
-                Cryptology.DecryptFile(file, fpath & "\" & splitfn(0) & "&_Decrypted" & ext, txtFileSecret.Text)
+            If open.ShowDialog <> DialogResult.Cancel Then
+                Dim file As String = open.FileName
+                Dim fpath As String = Path.GetDirectoryName(file)
+                Dim ext As String = Path.GetExtension(file)
+                Dim filen As String = Path.GetFileNameWithoutExtension(file)
+                Dim splitfn As String() = filen.Split(CChar("#"))
+                Cryptology.DecryptFile(file, fpath & "\" & splitfn(0) & "#Decoded" & ext, txtFileSecret.Text)
                 If Cryptology.Decoded Then
                     Me.TopMost = False
                     MsgBox(filedecrypted, MsgBoxStyle.Information)
@@ -775,7 +750,6 @@ Public Class Main
             End If
         End If
     End Sub
-
 #End Region
 
 #Region " .file drag and drop"
@@ -795,27 +769,16 @@ Public Class Main
             Me.TopMost = True
             Exit Sub
         Else
-
-            Dim file As String = Nothing
-            Dim fpath As String = Nothing
-            Dim ext As String = Nothing
-            Dim filen As String = Nothing
-            Dim filesiz As Long = Nothing
-
             Dim droppedfile As String() = CType(e.Data.GetData(DataFormats.FileDrop), String())
-            'Dim file As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop, True), System.String())
             For Each files In droppedfile
+                Dim file As String = droppedfile(0)
                 Dim filename As String = GetFileName(file)
-                file = droppedfile(0)
-                fpath = System.IO.Path.GetDirectoryName(file) 'file dir
-                ext = System.IO.Path.GetExtension(file) 'file extension .exe
-                filen = System.IO.Path.GetFileNameWithoutExtension(file) 'file name
-                Dim infoReader As System.IO.FileInfo
-                infoReader = My.Computer.FileSystem.GetFileInfo(file)
-                'MsgBox("File is " & infoReader.Length & " bytes.")
-                filesiz = infoReader.Length
-
-                Cryptology.EncryptFile(file, fpath & "\" & filen & "&_Encrypted" & ext, txtFileSecret.Text)
+                Dim fpath As String = Path.GetDirectoryName(file)
+                Dim ext As String = Path.GetExtension(file)
+                Dim filen As String = Path.GetFileNameWithoutExtension(file)
+                Dim infoReader As FileInfo = My.Computer.FileSystem.GetFileInfo(file)
+                Dim filesiz As Long = infoReader.Length
+                Cryptology.EncryptFile(file, fpath & "\" & filen & "#Encoded" & ext, txtFileSecret.Text)
                 If Cryptology.Encoded Then
                     Me.TopMost = False
                     MsgBox(filecripted, MsgBoxStyle.Information)
@@ -825,7 +788,6 @@ Public Class Main
             Next
         End If
     End Sub
-
 #End Region
 
 
@@ -840,7 +802,7 @@ Public Class Main
 #End Region
 
 #Region " Random pool"
-    Private Sub RandomPool2_CharacterSelection(s As Object, c As Char) Handles RandomPool2.CharacterSelection
+    Private Sub RandomPool3_CharacterSelection(s As Object, c As Char) Handles RandomPool.CharacterSelection
         If txtRandomPassword.TextLength < CInt(nupRandom.Value) Then txtRandomPassword.AppendText(c)
     End Sub
     Private Sub btnCleanRandomPwd_Click(sender As Object, e As EventArgs) Handles btnCleanRandomPwd.Click
@@ -891,7 +853,6 @@ Public Class Main
             If save.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Filename = save.FileName
                 Try
-                    ' My.Computer.FileSystem.WriteAllText(Filename, txtchatrom.Text, False)
                     Dim sw As StreamWriter = File.CreateText(Filename)
                     For i As Integer = 0 To txtPwdLists.Lines.Length - 1
                         sw.WriteLine(txtPwdLists.Lines(i))
@@ -914,7 +875,6 @@ Public Class Main
     Private Sub btnClipPasswordList_Click(sender As Object, e As EventArgs) Handles btnClipPasswordList.Click
         If Not txtPwdLists.Text = "" Then Clipboard.SetText(txtPwdLists.Text)
     End Sub
-
 #End Region
 
 

@@ -118,9 +118,7 @@ Partial Class Main
         Me.txtParamsPassword = New System.Windows.Forms.TextBox()
         Me.btnClipParamsPwd = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.RandomPool2 = New CryptoPocket.RandomPool()
-        Me.lblRandomPassLenght = New System.Windows.Forms.Label()
-        Me.nupRandom = New System.Windows.Forms.NumericUpDown()
+        Me.RandomPool = New CryptoPocket.RandomPool()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cbSpecialChars = New System.Windows.Forms.CheckBox()
         Me.lblParamsPassLenght = New System.Windows.Forms.Label()
@@ -131,6 +129,8 @@ Partial Class Main
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lblRandomPassLenght = New System.Windows.Forms.Label()
+        Me.nupRandom = New System.Windows.Forms.NumericUpDown()
         Me.cmsP.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.pbFileRow, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,22 +149,22 @@ Partial Class Main
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.nupRandom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.nchar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nupRandom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImageList1
         '
         Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "lock (3).png")
-        Me.ImageList1.Images.SetKeyName(1, "padlock_closed_icon&16.png")
-        Me.ImageList1.Images.SetKeyName(2, "book-lines-2.png")
-        Me.ImageList1.Images.SetKeyName(3, "folder_open_icon&16.png")
-        Me.ImageList1.Images.SetKeyName(4, "log.png")
+        Me.ImageList1.Images.SetKeyName(0, "lock.png")
+        Me.ImageList1.Images.SetKeyName(1, "edit.png")
+        Me.ImageList1.Images.SetKeyName(2, "folder-ico.png")
+        Me.ImageList1.Images.SetKeyName(3, "keys.png")
+        Me.ImageList1.Images.SetKeyName(4, "search.png")
         '
         'cmsP
         '
@@ -176,7 +176,7 @@ Partial Class Main
         'tsmCopy
         '
         Me.tsmCopy.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsmCopy.Image = Global.CryptoPocket.My.Resources.Resources.clipboard_copy_icon_16
+        Me.tsmCopy.Image = Global.CryptoPocket.My.Resources.Resources.clipboard
         Me.tsmCopy.Name = "tsmCopy"
         Me.tsmCopy.Size = New System.Drawing.Size(112, 22)
         Me.tsmCopy.Text = "Copia"
@@ -184,7 +184,7 @@ Partial Class Main
         'tsmPast
         '
         Me.tsmPast.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsmPast.Image = Global.CryptoPocket.My.Resources.Resources.pencil
+        Me.tsmPast.Image = CType(resources.GetObject("tsmPast.Image"), System.Drawing.Image)
         Me.tsmPast.Name = "tsmPast"
         Me.tsmPast.Size = New System.Drawing.Size(112, 22)
         Me.tsmPast.Text = "Incolla"
@@ -202,7 +202,7 @@ Partial Class Main
         Me.TabPage3.Controls.Add(Me.txtFileSecret)
         Me.TabPage3.Controls.Add(Me.lblFileSecret)
         Me.TabPage3.Controls.Add(Me.btnEncodeFile)
-        Me.TabPage3.ImageIndex = 3
+        Me.TabPage3.ImageIndex = 2
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -225,7 +225,7 @@ Partial Class Main
         'pbFileRow
         '
         Me.pbFileRow.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.pbFileRow.Image = Global.CryptoPocket.My.Resources.Resources.arrow_bottom_rigth_icon_16
+        Me.pbFileRow.Image = Global.CryptoPocket.My.Resources.Resources.arrow_bottom
         Me.pbFileRow.Location = New System.Drawing.Point(64, 165)
         Me.pbFileRow.Name = "pbFileRow"
         Me.pbFileRow.Size = New System.Drawing.Size(16, 16)
@@ -238,7 +238,7 @@ Partial Class Main
         Me.btnClipFile.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnClipFile.BackColor = System.Drawing.Color.DimGray
         Me.btnClipFile.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipFile.Image = CType(resources.GetObject("btnClipFile.Image"), System.Drawing.Image)
         Me.btnClipFile.Location = New System.Drawing.Point(164, 109)
         Me.btnClipFile.Name = "btnClipFile"
@@ -249,7 +249,7 @@ Partial Class Main
         'pbFile
         '
         Me.pbFile.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.pbFile.Image = Global.CryptoPocket.My.Resources.Resources.fileenc
+        Me.pbFile.Image = Global.CryptoPocket.My.Resources.Resources.file
         Me.pbFile.Location = New System.Drawing.Point(64, 187)
         Me.pbFile.Name = "pbFile"
         Me.pbFile.Size = New System.Drawing.Size(580, 388)
@@ -287,9 +287,8 @@ Partial Class Main
         Me.btnDecodeFile.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnDecodeFile.BackColor = System.Drawing.Color.DimGray
         Me.btnDecodeFile.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnDecodeFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDecodeFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnDecodeFile.ForeColor = System.Drawing.Color.Gold
-        Me.btnDecodeFile.Image = Global.CryptoPocket.My.Resources.Resources.padlock_open_icon_16
         Me.btnDecodeFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDecodeFile.Location = New System.Drawing.Point(420, 109)
         Me.btnDecodeFile.Name = "btnDecodeFile"
@@ -303,23 +302,22 @@ Partial Class Main
         Me.btnFileRandomSecret.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnFileRandomSecret.BackColor = System.Drawing.Color.DimGray
         Me.btnFileRandomSecret.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnFileRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnFileRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnFileRandomSecret.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFileRandomSecret.ForeColor = System.Drawing.Color.Gold
-        Me.btnFileRandomSecret.Image = Global.CryptoPocket.My.Resources.Resources._0303_loop2
         Me.btnFileRandomSecret.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnFileRandomSecret.Location = New System.Drawing.Point(64, 109)
         Me.btnFileRandomSecret.Name = "btnFileRandomSecret"
         Me.btnFileRandomSecret.Size = New System.Drawing.Size(94, 36)
         Me.btnFileRandomSecret.TabIndex = 18
         Me.btnFileRandomSecret.Text = "RANDOM"
-        Me.btnFileRandomSecret.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnFileRandomSecret.UseVisualStyleBackColor = False
         '
         'txtFileSecret
         '
         Me.txtFileSecret.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.txtFileSecret.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFileSecret.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.txtFileSecret.Location = New System.Drawing.Point(64, 81)
         Me.txtFileSecret.Name = "txtFileSecret"
         Me.txtFileSecret.Size = New System.Drawing.Size(582, 22)
@@ -330,7 +328,7 @@ Partial Class Main
         Me.lblFileSecret.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblFileSecret.AutoSize = True
         Me.lblFileSecret.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lblFileSecret.Location = New System.Drawing.Point(61, 64)
+        Me.lblFileSecret.Location = New System.Drawing.Point(61, 61)
         Me.lblFileSecret.Name = "lblFileSecret"
         Me.lblFileSecret.Size = New System.Drawing.Size(78, 14)
         Me.lblFileSecret.TabIndex = 16
@@ -341,9 +339,8 @@ Partial Class Main
         Me.btnEncodeFile.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnEncodeFile.BackColor = System.Drawing.Color.DimGray
         Me.btnEncodeFile.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnEncodeFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEncodeFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnEncodeFile.ForeColor = System.Drawing.Color.Gold
-        Me.btnEncodeFile.Image = Global.CryptoPocket.My.Resources.Resources.padlock_closed_icon_16
         Me.btnEncodeFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEncodeFile.Location = New System.Drawing.Point(201, 109)
         Me.btnEncodeFile.Name = "btnEncodeFile"
@@ -369,7 +366,7 @@ Partial Class Main
         Me.TabPage2.Controls.Add(Me.btnDecodeText)
         Me.TabPage2.Controls.Add(Me.lblTextKey)
         Me.TabPage2.Controls.Add(Me.btnCleanText)
-        Me.TabPage2.ImageIndex = 2
+        Me.TabPage2.ImageIndex = 1
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -392,7 +389,7 @@ Partial Class Main
         'pbRowText
         '
         Me.pbRowText.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.pbRowText.Image = Global.CryptoPocket.My.Resources.Resources.arrow_bottom_rigth_icon_16
+        Me.pbRowText.Image = Global.CryptoPocket.My.Resources.Resources.arrow_bottom
         Me.pbRowText.Location = New System.Drawing.Point(10, 145)
         Me.pbRowText.Name = "pbRowText"
         Me.pbRowText.Size = New System.Drawing.Size(16, 16)
@@ -421,7 +418,7 @@ Partial Class Main
         Me.txtTextSecret.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.txtTextSecret.BackColor = System.Drawing.SystemColors.Window
         Me.txtTextSecret.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTextSecret.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtTextSecret.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.txtTextSecret.Location = New System.Drawing.Point(135, 70)
         Me.txtTextSecret.Name = "txtTextSecret"
         Me.txtTextSecret.Size = New System.Drawing.Size(554, 22)
@@ -432,17 +429,15 @@ Partial Class Main
         Me.btnTextRandomSecret.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnTextRandomSecret.BackColor = System.Drawing.Color.DimGray
         Me.btnTextRandomSecret.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnTextRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTextRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnTextRandomSecret.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnTextRandomSecret.ForeColor = System.Drawing.Color.Gold
-        Me.btnTextRandomSecret.Image = Global.CryptoPocket.My.Resources.Resources._0303_loop2
         Me.btnTextRandomSecret.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnTextRandomSecret.Location = New System.Drawing.Point(180, 98)
         Me.btnTextRandomSecret.Name = "btnTextRandomSecret"
         Me.btnTextRandomSecret.Size = New System.Drawing.Size(98, 36)
         Me.btnTextRandomSecret.TabIndex = 22
         Me.btnTextRandomSecret.Text = "RANDOM"
-        Me.btnTextRandomSecret.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnTextRandomSecret.UseVisualStyleBackColor = False
         '
         'btnClipText
@@ -450,7 +445,7 @@ Partial Class Main
         Me.btnClipText.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnClipText.BackColor = System.Drawing.Color.DimGray
         Me.btnClipText.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipText.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipText.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipText.Image = CType(resources.GetObject("btnClipText.Image"), System.Drawing.Image)
         Me.btnClipText.Location = New System.Drawing.Point(284, 98)
         Me.btnClipText.Name = "btnClipText"
@@ -463,9 +458,8 @@ Partial Class Main
         Me.btnEncodeText.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnEncodeText.BackColor = System.Drawing.Color.DimGray
         Me.btnEncodeText.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnEncodeText.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEncodeText.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnEncodeText.ForeColor = System.Drawing.Color.Gold
-        Me.btnEncodeText.Image = Global.CryptoPocket.My.Resources.Resources.padlock_closed_icon_16
         Me.btnEncodeText.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEncodeText.Location = New System.Drawing.Point(323, 98)
         Me.btnEncodeText.Name = "btnEncodeText"
@@ -477,7 +471,7 @@ Partial Class Main
         'pbText
         '
         Me.pbText.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.pbText.Image = Global.CryptoPocket.My.Resources.Resources.txt
+        Me.pbText.Image = CType(resources.GetObject("pbText.Image"), System.Drawing.Image)
         Me.pbText.Location = New System.Drawing.Point(24, 26)
         Me.pbText.Name = "pbText"
         Me.pbText.Size = New System.Drawing.Size(82, 89)
@@ -490,9 +484,9 @@ Partial Class Main
         Me.btnSaveText.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnSaveText.BackColor = System.Drawing.Color.DimGray
         Me.btnSaveText.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSaveText.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveText.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSaveText.ForeColor = System.Drawing.Color.Gold
-        Me.btnSaveText.Image = Global.CryptoPocket.My.Resources.Resources.disk_save_yellow_icon
+        Me.btnSaveText.Image = Global.CryptoPocket.My.Resources.Resources.save_gold
         Me.btnSaveText.Location = New System.Drawing.Point(605, 98)
         Me.btnSaveText.Name = "btnSaveText"
         Me.btnSaveText.Size = New System.Drawing.Size(39, 36)
@@ -516,9 +510,9 @@ Partial Class Main
         Me.btnTextLoad.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnTextLoad.BackColor = System.Drawing.Color.DimGray
         Me.btnTextLoad.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnTextLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTextLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnTextLoad.ForeColor = System.Drawing.Color.Gold
-        Me.btnTextLoad.Image = Global.CryptoPocket.My.Resources.Resources.search
+        Me.btnTextLoad.Image = CType(resources.GetObject("btnTextLoad.Image"), System.Drawing.Image)
         Me.btnTextLoad.Location = New System.Drawing.Point(135, 98)
         Me.btnTextLoad.Name = "btnTextLoad"
         Me.btnTextLoad.Size = New System.Drawing.Size(39, 36)
@@ -543,9 +537,8 @@ Partial Class Main
         Me.btnDecodeText.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnDecodeText.BackColor = System.Drawing.Color.DimGray
         Me.btnDecodeText.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnDecodeText.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDecodeText.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnDecodeText.ForeColor = System.Drawing.Color.Gold
-        Me.btnDecodeText.Image = Global.CryptoPocket.My.Resources.Resources.padlock_open_icon_16
         Me.btnDecodeText.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDecodeText.Location = New System.Drawing.Point(464, 98)
         Me.btnDecodeText.Name = "btnDecodeText"
@@ -559,7 +552,7 @@ Partial Class Main
         Me.lblTextKey.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblTextKey.AutoSize = True
         Me.lblTextKey.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lblTextKey.Location = New System.Drawing.Point(134, 51)
+        Me.lblTextKey.Location = New System.Drawing.Point(134, 48)
         Me.lblTextKey.Name = "lblTextKey"
         Me.lblTextKey.Size = New System.Drawing.Size(78, 14)
         Me.lblTextKey.TabIndex = 23
@@ -570,9 +563,9 @@ Partial Class Main
         Me.btnCleanText.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnCleanText.BackColor = System.Drawing.Color.DimGray
         Me.btnCleanText.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCleanText.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCleanText.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCleanText.ForeColor = System.Drawing.Color.Gold
-        Me.btnCleanText.Image = Global.CryptoPocket.My.Resources.Resources.edit_clear
+        Me.btnCleanText.Image = Global.CryptoPocket.My.Resources.Resources.clear
         Me.btnCleanText.Location = New System.Drawing.Point(650, 98)
         Me.btnCleanText.Name = "btnCleanText"
         Me.btnCleanText.Size = New System.Drawing.Size(39, 36)
@@ -627,7 +620,7 @@ Partial Class Main
         Me.btnClipUrl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClipUrl.BackColor = System.Drawing.Color.DimGray
         Me.btnClipUrl.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipUrl.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipUrl.ForeColor = System.Drawing.Color.Gold
         Me.btnClipUrl.Image = CType(resources.GetObject("btnClipUrl.Image"), System.Drawing.Image)
         Me.btnClipUrl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -644,7 +637,7 @@ Partial Class Main
         Me.btnClipEmail.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClipEmail.BackColor = System.Drawing.Color.DimGray
         Me.btnClipEmail.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipEmail.ForeColor = System.Drawing.Color.Gold
         Me.btnClipEmail.Image = CType(resources.GetObject("btnClipEmail.Image"), System.Drawing.Image)
         Me.btnClipEmail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -661,7 +654,7 @@ Partial Class Main
         Me.btnClipDescription.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClipDescription.BackColor = System.Drawing.Color.DimGray
         Me.btnClipDescription.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipDescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipDescription.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipDescription.ForeColor = System.Drawing.Color.Gold
         Me.btnClipDescription.Image = CType(resources.GetObject("btnClipDescription.Image"), System.Drawing.Image)
         Me.btnClipDescription.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -703,6 +696,7 @@ Partial Class Main
         Me.LVPsw.Name = "LVPsw"
         Me.LVPsw.Size = New System.Drawing.Size(673, 302)
         Me.LVPsw.SmallImageList = Me.ImageList1
+        Me.LVPsw.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.LVPsw.TabIndex = 3
         Me.LVPsw.UseCompatibleStateImageBehavior = False
         Me.LVPsw.View = System.Windows.Forms.View.Details
@@ -820,10 +814,10 @@ Partial Class Main
         Me.btnDelItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDelItem.BackColor = System.Drawing.Color.DimGray
         Me.btnDelItem.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnDelItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDelItem.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnDelItem.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelItem.ForeColor = System.Drawing.Color.Gold
-        Me.btnDelItem.Image = Global.CryptoPocket.My.Resources.Resources.del
+        Me.btnDelItem.Image = CType(resources.GetObject("btnDelItem.Image"), System.Drawing.Image)
         Me.btnDelItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDelItem.Location = New System.Drawing.Point(596, 235)
         Me.btnDelItem.Name = "btnDelItem"
@@ -851,7 +845,7 @@ Partial Class Main
         Me.cbModifica.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbModifica.BackColor = System.Drawing.Color.DimGray
         Me.cbModifica.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cbModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbModifica.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cbModifica.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbModifica.ForeColor = System.Drawing.Color.Gold
         Me.cbModifica.Location = New System.Drawing.Point(512, 236)
@@ -867,7 +861,7 @@ Partial Class Main
         Me.btnRandomSecret.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRandomSecret.BackColor = System.Drawing.Color.DimGray
         Me.btnRandomSecret.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRandomSecret.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnRandomSecret.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRandomSecret.ForeColor = System.Drawing.Color.Gold
         Me.btnRandomSecret.Location = New System.Drawing.Point(549, 156)
@@ -894,7 +888,7 @@ Partial Class Main
         Me.btnClipPassword.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClipPassword.BackColor = System.Drawing.Color.DimGray
         Me.btnClipPassword.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipPassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipPassword.ForeColor = System.Drawing.Color.Gold
         Me.btnClipPassword.Image = CType(resources.GetObject("btnClipPassword.Image"), System.Drawing.Image)
         Me.btnClipPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -923,7 +917,7 @@ Partial Class Main
         Me.btnClipUsername.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClipUsername.BackColor = System.Drawing.Color.DimGray
         Me.btnClipUsername.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClipUsername.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnClipUsername.ForeColor = System.Drawing.Color.Gold
         Me.btnClipUsername.Image = CType(resources.GetObject("btnClipUsername.Image"), System.Drawing.Image)
         Me.btnClipUsername.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1014,7 +1008,7 @@ Partial Class Main
         Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSearch.BackColor = System.Drawing.Color.DimGray
         Me.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSearch.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.ForeColor = System.Drawing.Color.Gold
         Me.btnSearch.Image = CType(resources.GetObject("btnSearch.Image"), System.Drawing.Image)
@@ -1034,7 +1028,7 @@ Partial Class Main
         Me.btnCleanDescription.BackColor = System.Drawing.Color.DimGray
         Me.btnCleanDescription.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCleanDescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCleanDescription.Image = Global.CryptoPocket.My.Resources.Resources.edit_clear
+        Me.btnCleanDescription.Image = Global.CryptoPocket.My.Resources.Resources.clear
         Me.btnCleanDescription.Location = New System.Drawing.Point(626, 11)
         Me.btnCleanDescription.Name = "btnCleanDescription"
         Me.btnCleanDescription.Size = New System.Drawing.Size(59, 24)
@@ -1072,10 +1066,10 @@ Partial Class Main
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddEncode.BackColor = System.Drawing.Color.DimGray
         Me.btnAddEncode.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAddEncode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAddEncode.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnAddEncode.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddEncode.ForeColor = System.Drawing.Color.Gold
-        Me.btnAddEncode.Image = Global.CryptoPocket.My.Resources.Resources.disk_save_yellow_icon
+        Me.btnAddEncode.Image = Global.CryptoPocket.My.Resources.Resources.add
         Me.btnAddEncode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAddEncode.Location = New System.Drawing.Point(12, 187)
         Me.btnAddEncode.Name = "btnAddEncode"
@@ -1099,7 +1093,7 @@ Partial Class Main
         '
         'pbAdmin
         '
-        Me.pbAdmin.Image = Global.CryptoPocket.My.Resources.Resources.Admin
+        Me.pbAdmin.Image = Global.CryptoPocket.My.Resources.Resources.admin
         Me.pbAdmin.Location = New System.Drawing.Point(15, 21)
         Me.pbAdmin.Name = "pbAdmin"
         Me.pbAdmin.Size = New System.Drawing.Size(111, 113)
@@ -1133,7 +1127,7 @@ Partial Class Main
         Me.TabPage4.Controls.Add(Me.GroupBox3)
         Me.TabPage4.Controls.Add(Me.GroupBox2)
         Me.TabPage4.Controls.Add(Me.GroupBox1)
-        Me.TabPage4.ImageIndex = 4
+        Me.TabPage4.ImageIndex = 3
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
@@ -1164,8 +1158,8 @@ Partial Class Main
         Me.btnClipPasswordList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnClipPasswordList.BackColor = System.Drawing.Color.DimGray
         Me.btnClipPasswordList.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipPasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClipPasswordList.Image = Global.CryptoPocket.My.Resources.Resources.clipb
+        Me.btnClipPasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnClipPasswordList.Image = CType(resources.GetObject("btnClipPasswordList.Image"), System.Drawing.Image)
         Me.btnClipPasswordList.Location = New System.Drawing.Point(244, 177)
         Me.btnClipPasswordList.Name = "btnClipPasswordList"
         Me.btnClipPasswordList.Size = New System.Drawing.Size(39, 28)
@@ -1177,10 +1171,10 @@ Partial Class Main
         Me.btnCleanPasswordList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCleanPasswordList.BackColor = System.Drawing.Color.DimGray
         Me.btnCleanPasswordList.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCleanPasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCleanPasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCleanPasswordList.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCleanPasswordList.ForeColor = System.Drawing.Color.Gold
-        Me.btnCleanPasswordList.Image = Global.CryptoPocket.My.Resources.Resources.edit_clear
+        Me.btnCleanPasswordList.Image = Global.CryptoPocket.My.Resources.Resources.clear
         Me.btnCleanPasswordList.Location = New System.Drawing.Point(154, 177)
         Me.btnCleanPasswordList.Name = "btnCleanPasswordList"
         Me.btnCleanPasswordList.Size = New System.Drawing.Size(39, 28)
@@ -1193,9 +1187,9 @@ Partial Class Main
         Me.btnSavePasswordList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnSavePasswordList.BackColor = System.Drawing.Color.DimGray
         Me.btnSavePasswordList.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSavePasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSavePasswordList.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnSavePasswordList.ForeColor = System.Drawing.Color.Gold
-        Me.btnSavePasswordList.Image = Global.CryptoPocket.My.Resources.Resources.disk_save_yellow_icon
+        Me.btnSavePasswordList.Image = Global.CryptoPocket.My.Resources.Resources.save_gold
         Me.btnSavePasswordList.Location = New System.Drawing.Point(199, 177)
         Me.btnSavePasswordList.Name = "btnSavePasswordList"
         Me.btnSavePasswordList.Size = New System.Drawing.Size(39, 28)
@@ -1208,6 +1202,7 @@ Partial Class Main
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPwdLists.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtPwdLists.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPwdLists.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.txtPwdLists.Location = New System.Drawing.Point(15, 30)
         Me.txtPwdLists.Multiline = True
@@ -1221,17 +1216,15 @@ Partial Class Main
         Me.btnPasswordListGenerate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnPasswordListGenerate.BackColor = System.Drawing.Color.DimGray
         Me.btnPasswordListGenerate.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnPasswordListGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPasswordListGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnPasswordListGenerate.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPasswordListGenerate.ForeColor = System.Drawing.Color.Gold
-        Me.btnPasswordListGenerate.Image = Global.CryptoPocket.My.Resources.Resources.padlock_closed_icon_16
         Me.btnPasswordListGenerate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPasswordListGenerate.Location = New System.Drawing.Point(14, 177)
         Me.btnPasswordListGenerate.Name = "btnPasswordListGenerate"
         Me.btnPasswordListGenerate.Size = New System.Drawing.Size(134, 28)
         Me.btnPasswordListGenerate.TabIndex = 36
         Me.btnPasswordListGenerate.Text = "GENERATE"
-        Me.btnPasswordListGenerate.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnPasswordListGenerate.UseVisualStyleBackColor = False
         '
         'GroupBox5
@@ -1328,10 +1321,10 @@ Partial Class Main
         '
         Me.btnCleanRandomPwd.BackColor = System.Drawing.Color.DimGray
         Me.btnCleanRandomPwd.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCleanRandomPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCleanRandomPwd.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnCleanRandomPwd.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCleanRandomPwd.ForeColor = System.Drawing.Color.Gold
-        Me.btnCleanRandomPwd.Image = Global.CryptoPocket.My.Resources.Resources.edit_clear
+        Me.btnCleanRandomPwd.Image = Global.CryptoPocket.My.Resources.Resources.clear
         Me.btnCleanRandomPwd.Location = New System.Drawing.Point(15, 60)
         Me.btnCleanRandomPwd.Name = "btnCleanRandomPwd"
         Me.btnCleanRandomPwd.Size = New System.Drawing.Size(39, 28)
@@ -1343,8 +1336,8 @@ Partial Class Main
         '
         Me.btnClipRandomPwd.BackColor = System.Drawing.Color.DimGray
         Me.btnClipRandomPwd.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipRandomPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClipRandomPwd.Image = Global.CryptoPocket.My.Resources.Resources.clipb
+        Me.btnClipRandomPwd.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnClipRandomPwd.Image = CType(resources.GetObject("btnClipRandomPwd.Image"), System.Drawing.Image)
         Me.btnClipRandomPwd.Location = New System.Drawing.Point(60, 60)
         Me.btnClipRandomPwd.Name = "btnClipRandomPwd"
         Me.btnClipRandomPwd.Size = New System.Drawing.Size(36, 28)
@@ -1379,17 +1372,15 @@ Partial Class Main
         '
         Me.btnParamsPwdGenerate.BackColor = System.Drawing.Color.DimGray
         Me.btnParamsPwdGenerate.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnParamsPwdGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnParamsPwdGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnParamsPwdGenerate.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnParamsPwdGenerate.ForeColor = System.Drawing.Color.Gold
-        Me.btnParamsPwdGenerate.Image = Global.CryptoPocket.My.Resources.Resources.padlock_closed_icon_16
         Me.btnParamsPwdGenerate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnParamsPwdGenerate.Location = New System.Drawing.Point(14, 60)
         Me.btnParamsPwdGenerate.Name = "btnParamsPwdGenerate"
         Me.btnParamsPwdGenerate.Size = New System.Drawing.Size(134, 28)
         Me.btnParamsPwdGenerate.TabIndex = 45
         Me.btnParamsPwdGenerate.Text = "GENERATE"
-        Me.btnParamsPwdGenerate.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnParamsPwdGenerate.UseVisualStyleBackColor = False
         '
         'txtParamsPassword
@@ -1407,8 +1398,8 @@ Partial Class Main
         '
         Me.btnClipParamsPwd.BackColor = System.Drawing.Color.DimGray
         Me.btnClipParamsPwd.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClipParamsPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClipParamsPwd.Image = Global.CryptoPocket.My.Resources.Resources.clipb
+        Me.btnClipParamsPwd.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnClipParamsPwd.Image = CType(resources.GetObject("btnClipParamsPwd.Image"), System.Drawing.Image)
         Me.btnClipParamsPwd.Location = New System.Drawing.Point(154, 60)
         Me.btnClipParamsPwd.Name = "btnClipParamsPwd"
         Me.btnClipParamsPwd.Size = New System.Drawing.Size(36, 28)
@@ -1419,9 +1410,7 @@ Partial Class Main
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.RandomPool2)
-        Me.GroupBox2.Controls.Add(Me.lblRandomPassLenght)
-        Me.GroupBox2.Controls.Add(Me.nupRandom)
+        Me.GroupBox2.Controls.Add(Me.RandomPool)
         Me.GroupBox2.Location = New System.Drawing.Point(362, 16)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(326, 154)
@@ -1429,38 +1418,17 @@ Partial Class Main
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Random"
         '
-        'RandomPool2
+        'RandomPool
         '
-        Me.RandomPool2.Image = Nothing
-        Me.RandomPool2.Location = New System.Drawing.Point(18, 55)
-        Me.RandomPool2.Name = "RandomPool2"
-        Me.RandomPool2.NoRounding = False
-        Me.RandomPool2.Range = "0123456789abcdefghilmnopqrstuvxyzABCDEFGHILMNOPQRSTUVXYZ!§$%&/@()=?*+~#'-_<>|^°"
-        Me.RandomPool2.RangePadding = 2
-        Me.RandomPool2.Size = New System.Drawing.Size(294, 90)
-        Me.RandomPool2.TabIndex = 48
-        Me.RandomPool2.Text = "RandomPool2"
-        '
-        'lblRandomPassLenght
-        '
-        Me.lblRandomPassLenght.AutoSize = True
-        Me.lblRandomPassLenght.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRandomPassLenght.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.lblRandomPassLenght.Location = New System.Drawing.Point(15, 23)
-        Me.lblRandomPassLenght.Name = "lblRandomPassLenght"
-        Me.lblRandomPassLenght.Size = New System.Drawing.Size(118, 14)
-        Me.lblRandomPassLenght.TabIndex = 46
-        Me.lblRandomPassLenght.Text = "Password lenght:"
-        '
-        'nupRandom
-        '
-        Me.nupRandom.Location = New System.Drawing.Point(165, 21)
-        Me.nupRandom.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
-        Me.nupRandom.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nupRandom.Name = "nupRandom"
-        Me.nupRandom.Size = New System.Drawing.Size(59, 22)
-        Me.nupRandom.TabIndex = 47
-        Me.nupRandom.Value = New Decimal(New Integer() {16, 0, 0, 0})
+        Me.RandomPool.Image = Nothing
+        Me.RandomPool.Location = New System.Drawing.Point(15, 23)
+        Me.RandomPool.Name = "RandomPool"
+        Me.RandomPool.NoRounding = False
+        Me.RandomPool.Range = "0123456789abcdefghilmnopqrstuvxyzABCDEFGHILMNOPQRSTUVXYZ!§$%&/@()=?*+~#'-_<>|^°"
+        Me.RandomPool.RangePadding = 2
+        Me.RandomPool.Size = New System.Drawing.Size(297, 122)
+        Me.RandomPool.TabIndex = 0
+        Me.RandomPool.Text = "RandomPool"
         '
         'GroupBox1
         '
@@ -1544,7 +1512,7 @@ Partial Class Main
         '
         Me.TabPage5.Controls.Add(Me.RichTextBox1)
         Me.TabPage5.Controls.Add(Me.PictureBox1)
-        Me.TabPage5.ImageIndex = 1
+        Me.TabPage5.ImageIndex = 4
         Me.TabPage5.Location = New System.Drawing.Point(4, 23)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
@@ -1564,13 +1532,34 @@ Partial Class Main
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.CryptoPocket.My.Resources.Resources.Admin
+        Me.PictureBox1.Image = Global.CryptoPocket.My.Resources.Resources.admin
         Me.PictureBox1.Location = New System.Drawing.Point(62, 60)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(135, 124)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 12
         Me.PictureBox1.TabStop = False
+        '
+        'lblRandomPassLenght
+        '
+        Me.lblRandomPassLenght.AutoSize = True
+        Me.lblRandomPassLenght.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRandomPassLenght.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.lblRandomPassLenght.Location = New System.Drawing.Point(15, 23)
+        Me.lblRandomPassLenght.Name = "lblRandomPassLenght"
+        Me.lblRandomPassLenght.Size = New System.Drawing.Size(118, 14)
+        Me.lblRandomPassLenght.TabIndex = 46
+        Me.lblRandomPassLenght.Text = "Password lenght:"
+        '
+        'nupRandom
+        '
+        Me.nupRandom.Location = New System.Drawing.Point(165, 21)
+        Me.nupRandom.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
+        Me.nupRandom.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nupRandom.Name = "nupRandom"
+        Me.nupRandom.Size = New System.Drawing.Size(59, 20)
+        Me.nupRandom.TabIndex = 47
+        Me.nupRandom.Value = New Decimal(New Integer() {16, 0, 0, 0})
         '
         'Main
         '
@@ -1610,13 +1599,12 @@ Partial Class Main
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        CType(Me.nupRandom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.nchar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nupRandom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1728,4 +1716,5 @@ Partial Class Main
     Friend WithEvents pll As NumericUpDown
     Friend WithEvents Label2 As Label
     Friend WithEvents RandomPool2 As RandomPool
+    Friend WithEvents RandomPool As RandomPool
 End Class
