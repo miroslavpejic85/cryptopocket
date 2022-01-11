@@ -288,9 +288,7 @@ Public Class Main
             Next
             LVPsw.Focus()
 
-            If found Then
-                Return
-            Else
+            If Not found Then
                 Me.TopMost = False
                 MsgBox("Not found!", MsgBoxStyle.Critical)
                 Me.TopMost = True
@@ -307,11 +305,6 @@ Public Class Main
         If LVPsw.SelectedItems.Count > 0 Then
 
             If cbModifica.Checked Then
-
-                btnDelItem.Enabled = False
-                btnAddEncode.Enabled = False
-                btnSearch.Enabled = False
-
                 ' decode the seleceted from the list
                 Try
                     If LVPsw.SelectedItems.Count > 0 Then
@@ -324,11 +317,9 @@ Public Class Main
                             Exit Sub
                         Else
                             passwordok = True
-                            Dim decryptedusername As String = ""
-                            Dim decryptedpassword As String = ""
 
-                            decryptedusername = Cryptology.RijndaelDecrypt(LVPsw.FocusedItem.SubItems(3).Text, txtSecret.Text)
-                            decryptedpassword = Cryptology.RijndaelDecrypt(LVPsw.FocusedItem.SubItems(4).Text, txtSecret.Text)
+                            Dim decryptedusername As String = Cryptology.RijndaelDecrypt(LVPsw.FocusedItem.SubItems(3).Text, txtSecret.Text)
+                            Dim decryptedpassword As String = Cryptology.RijndaelDecrypt(LVPsw.FocusedItem.SubItems(4).Text, txtSecret.Text)
 
                             txtUsername.Text = decryptedusername
                             txtPassword.Text = decryptedpassword
@@ -346,11 +337,6 @@ Public Class Main
                     MsgBox("Err: " + ex.Message)
                 End Try
             Else
-
-                btnDelItem.Enabled = True
-                btnAddEncode.Enabled = True
-                btnSearch.Enabled = True
-
                 ' decode the selected
                 Try
                     If passwordok = True Then
@@ -364,6 +350,7 @@ Public Class Main
                                 'modify item
                                 txtUsername.Text = Cryptology.Rijndaelcrypt(txtUsername.Text, txtSecret.Text)
                                 txtPassword.Text = Cryptology.Rijndaelcrypt(txtPassword.Text, txtSecret.Text)
+
                                 LVPsw.SelectedItems(0).SubItems(3).Text = txtUsername.Text
                                 LVPsw.SelectedItems(0).SubItems(4).Text = txtPassword.Text
 
@@ -382,36 +369,36 @@ Public Class Main
             End If
         End If
     End Sub
-    Private Sub modifyTextBox(ByVal m As Boolean)
+    Private Sub modifyTextBox(m As Boolean)
         Select Case m
             Case True
-                ' backColor
-                txtDescription.BackColor = Color.LightYellow
-                txtEmail.BackColor = Color.LightYellow
-                txtUrl.BackColor = Color.LightYellow
-                txtUsername.BackColor = Color.LightYellow
-                txtPassword.BackColor = Color.LightYellow
-                ' ForeColor
-                txtDescription.ForeColor = Color.Black
-                txtEmail.ForeColor = Color.Black
-                txtUrl.ForeColor = Color.Black
-                txtUsername.ForeColor = Color.Black
-                txtPassword.ForeColor = Color.Black
+                setColor(Color.LightYellow, Color.Black)
             Case False
-                ' backColor
-                txtDescription.BackColor = Color.White
-                txtEmail.BackColor = Color.White
-                txtUrl.BackColor = Color.White
-                txtUsername.BackColor = Color.White
-                txtPassword.BackColor = Color.White
-                ' ForeColor
-                txtDescription.ForeColor = SystemColors.WindowFrame
-                txtEmail.ForeColor = SystemColors.WindowFrame
-                txtUrl.ForeColor = SystemColors.WindowFrame
-                txtUsername.ForeColor = SystemColors.WindowFrame
-                txtPassword.ForeColor = SystemColors.WindowFrame
+                setColor(Color.White, Color.Black)
         End Select
+        ' enable / disable
+        btnDelItem.Enabled = Not m
+        btnAddEncode.Enabled = Not m
+        btnSearch.Enabled = Not m
+        btnRandomSecret.Enabled = Not m
+        txtSecret.Enabled = Not m
     End Sub
+
+    Private Sub setColor(backColor As Color, foreColor As Color)
+        ' backColor
+        txtDescription.BackColor = backColor
+        txtEmail.BackColor = backColor
+        txtUrl.BackColor = backColor
+        txtUsername.BackColor = backColor
+        txtPassword.BackColor = backColor
+        ' ForeColor
+        txtDescription.ForeColor = foreColor
+        txtEmail.ForeColor = foreColor
+        txtUrl.ForeColor = foreColor
+        txtUsername.ForeColor = foreColor
+        txtPassword.ForeColor = foreColor
+    End Sub
+
     Private Sub txtdescrizione_TextChanged(sender As Object, e As EventArgs) Handles txtDescription.TextChanged
         If LVPsw.SelectedItems.Count > 0 Then
             If modify Then LVPsw.SelectedItems(0).Text = txtDescription.Text
@@ -451,6 +438,11 @@ Public Class Main
                 Else : Exit Sub
                 End If
             End If
+            txtDescription.Text = ""
+            txtEmail.Text = ""
+            txtUrl.Text = ""
+            txtUsername.Text = ""
+            txtPassword.Text = ""
         Catch ex As Exception
         End Try
     End Sub

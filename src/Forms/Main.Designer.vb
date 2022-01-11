@@ -118,7 +118,6 @@ Partial Class Main
         Me.txtParamsPassword = New System.Windows.Forms.TextBox()
         Me.btnClipParamsPwd = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.RandomPool = New CryptoPocket.RandomPool()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cbSpecialChars = New System.Windows.Forms.CheckBox()
         Me.lblParamsPassLenght = New System.Windows.Forms.Label()
@@ -131,6 +130,7 @@ Partial Class Main
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblRandomPassLenght = New System.Windows.Forms.Label()
         Me.nupRandom = New System.Windows.Forms.NumericUpDown()
+        Me.RandomPool = New CryptoPocket.RandomPool()
         Me.cmsP.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.pbFileRow, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,23 +171,24 @@ Partial Class Main
         Me.cmsP.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmsP.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmCopy, Me.tsmPast})
         Me.cmsP.Name = "cmsP"
-        Me.cmsP.Size = New System.Drawing.Size(113, 48)
+        Me.cmsP.Size = New System.Drawing.Size(105, 48)
         '
         'tsmCopy
         '
         Me.tsmCopy.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsmCopy.Image = Global.CryptoPocket.My.Resources.Resources.clipboard
+        Me.tsmCopy.Image = Global.CryptoPocket.My.Resources.Resources.copy
         Me.tsmCopy.Name = "tsmCopy"
-        Me.tsmCopy.Size = New System.Drawing.Size(112, 22)
-        Me.tsmCopy.Text = "Copia"
+        Me.tsmCopy.Size = New System.Drawing.Size(104, 22)
+        Me.tsmCopy.Text = "Copy"
         '
         'tsmPast
         '
         Me.tsmPast.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsmPast.Image = CType(resources.GetObject("tsmPast.Image"), System.Drawing.Image)
+        Me.tsmPast.Image = Global.CryptoPocket.My.Resources.Resources.edit
         Me.tsmPast.Name = "tsmPast"
-        Me.tsmPast.Size = New System.Drawing.Size(112, 22)
-        Me.tsmPast.Text = "Incolla"
+        Me.tsmPast.Size = New System.Drawing.Size(104, 22)
+        Me.tsmPast.Text = "Past"
+        Me.tsmPast.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
         '
         'TabPage3
         '
@@ -512,7 +513,7 @@ Partial Class Main
         Me.btnTextLoad.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnTextLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnTextLoad.ForeColor = System.Drawing.Color.Gold
-        Me.btnTextLoad.Image = CType(resources.GetObject("btnTextLoad.Image"), System.Drawing.Image)
+        Me.btnTextLoad.Image = Global.CryptoPocket.My.Resources.Resources.add
         Me.btnTextLoad.Location = New System.Drawing.Point(135, 98)
         Me.btnTextLoad.Name = "btnTextLoad"
         Me.btnTextLoad.Size = New System.Drawing.Size(39, 36)
@@ -1418,21 +1419,6 @@ Partial Class Main
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Random"
         '
-        'RandomPool
-        '
-        Me.RandomPool.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RandomPool.Image = Nothing
-        Me.RandomPool.Location = New System.Drawing.Point(15, 23)
-        Me.RandomPool.Name = "RandomPool"
-        Me.RandomPool.NoRounding = False
-        Me.RandomPool.Range = "0123456789abcdefghilmnopqrstuvxyzABCDEFGHILMNOPQRSTUVXYZ!§$%&/@()=?*+~#'-_<>|^°"
-        Me.RandomPool.RangePadding = 2
-        Me.RandomPool.Size = New System.Drawing.Size(297, 122)
-        Me.RandomPool.TabIndex = 0
-        Me.RandomPool.Text = "RandomPool"
-        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.cbSpecialChars)
@@ -1563,6 +1549,21 @@ Partial Class Main
         Me.nupRandom.Size = New System.Drawing.Size(59, 20)
         Me.nupRandom.TabIndex = 47
         Me.nupRandom.Value = New Decimal(New Integer() {16, 0, 0, 0})
+        '
+        'RandomPool
+        '
+        Me.RandomPool.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RandomPool.Image = Nothing
+        Me.RandomPool.Location = New System.Drawing.Point(15, 23)
+        Me.RandomPool.Name = "RandomPool"
+        Me.RandomPool.NoRounding = False
+        Me.RandomPool.Range = "0123456789abcdefghilmnopqrstuvxyzABCDEFGHILMNOPQRSTUVXYZ!§$%&/@()=?*+~#'-_<>|^°"
+        Me.RandomPool.RangePadding = 2
+        Me.RandomPool.Size = New System.Drawing.Size(297, 122)
+        Me.RandomPool.TabIndex = 0
+        Me.RandomPool.Text = "RandomPool"
         '
         'Main
         '
